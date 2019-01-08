@@ -7,21 +7,15 @@ module Administration
     end
 
     def update
-      puts "OLÉ OLÉ OLÉ"
-      puts "OLÉ OLÉ OLÉ"
-      puts "OLÉ OLÉ OLÉ"
-      puts "OLÉ OLÉ OLÉ"
-      puts "OLÉ OLÉ OLÉ"
       @item = Item.find(params[:id])
-      puts @item
-      @item.update(has_discount: true)
-      puts @item[:discount_percentage]
-      puts "OLÉ OLÉ OLÉ"
-      puts "OLÉ OLÉ OLÉ"
-      puts "OLÉ OLÉ OLÉ"
-      puts "OLÉ OLÉ OLÉ"
-      puts "OLÉ OLÉ OLÉ"
+      post_params = params.require(:item).permit(:discount_percentage)
+      @item.update(post_params)
       redirect_to administration_items_path
+      if @item[:discount_percentage].positive?
+        @item.update(has_discount: true)
+      else
+        @item.update(has_discount: false)
+      end
     end
   end
 end
