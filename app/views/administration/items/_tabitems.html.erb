@@ -1,0 +1,10 @@
+<% @items.each do |elem|%>    							
+	<tr>
+		<%=form_for elem, :url => administration_item_path(elem.id), :html => { :method => :patch } do |form| %>
+		<th><%= elem.original_price %></th>
+		<th><%= form.number_field :discount_percentage %></th>
+		<th><%= elem.price %></th>
+		<th><%= form.submit 'Modifier' %></th>
+		<%end%>
+	</tr>
+<%end%>
