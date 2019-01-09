@@ -15,8 +15,9 @@
 class Item < ApplicationRecord
   def price
     return original_price if has_discount == false
+
     price = original_price - (original_price * discount_percentage / 100)
-    return price
+    price
   end
 
   def self.average_price
