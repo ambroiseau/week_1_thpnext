@@ -14,15 +14,13 @@
 
 class Item < ApplicationRecord
   def price
+    return original_price if has_discount == false
     price = original_price - (original_price * discount_percentage / 100)
     return price
-    unless has_discount == false
-      return original_price
-    end
   end
 
   def self.average_price
     items_prices = Item.all.map(&:price)
-    return items_prices.sum / items_prices.size.to_f
+    items_prices.sum / items_prices.size.to_f
   end
 end

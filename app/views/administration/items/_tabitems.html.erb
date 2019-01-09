@@ -1,4 +1,5 @@
-<% @items.each do |elem|%>    							
+<%@items = @items.sort_by { |elem| elem[:id]} %>
+<%@items.each do |elem|%>    							
 	<tr>
 		<%=form_for elem, url: administration_item_path(elem) do |f| %>
 		<th><%= elem.original_price %></th>
