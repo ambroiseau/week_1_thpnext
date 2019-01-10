@@ -13,6 +13,9 @@
 #
 
 class Item < ApplicationRecord
+  has_many :categorizations
+  has_many :categories, through: :categorizations
+
   def price
     return original_price if has_discount == false
 

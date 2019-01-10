@@ -10,10 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_05_150742) do
+ActiveRecord::Schema.define(version: 2019_01_10_175453) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "categorizations", force: :cascade do |t|
+    t.bigint "items_id"
+    t.bigint "categories_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["categories_id"], name: "index_categorizations_on_categories_id"
+    t.index ["items_id"], name: "index_categorizations_on_items_id"
+  end
 
   create_table "items", force: :cascade do |t|
     t.float "original_price", null: false
@@ -21,6 +37,7 @@ ActiveRecord::Schema.define(version: 2019_01_05_150742) do
     t.integer "discount_percentage", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
   end
 
 end
