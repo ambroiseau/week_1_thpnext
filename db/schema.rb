@@ -23,12 +23,12 @@ ActiveRecord::Schema.define(version: 2019_01_10_175453) do
   end
 
   create_table "categorizations", force: :cascade do |t|
-    t.bigint "items_id"
-    t.bigint "categories_id"
+    t.bigint "item_id"
+    t.bigint "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["categories_id"], name: "index_categorizations_on_categories_id"
-    t.index ["items_id"], name: "index_categorizations_on_items_id"
+    t.index ["category_id"], name: "index_categorizations_on_category_id"
+    t.index ["item_id"], name: "index_categorizations_on_item_id"
   end
 
   create_table "items", force: :cascade do |t|

@@ -2,6 +2,7 @@
 <%@items.each do |elem|%>    							
 	<tr>
 		<%=form_for elem, url: administration_item_path(elem) do |f| %>
+		<th><%= elem.name %></th>		
 		<th><%= elem.original_price %></th>
 		<th><%= f.number_field :discount_percentage, class: 'form-control' %></th>
 		<th><%= elem.price %></th>

@@ -13,14 +13,15 @@
 #
 
 class Item < ApplicationRecord
+  validates :name, presence: true
+
   has_many :categorizations
   has_many :categories, through: :categorizations
 
   def price
-    return original_price if has_discount == false
+    return original_price unless has_discount
 
-    price = original_price - (original_price * discount_percentage / 100)
-    price
+    original_price - (original_price * discount_percentage / 100)
   end
 
   def self.average_price

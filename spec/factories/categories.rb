@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :category do
-    name { "MyString" }
-    description { "MyText" }
+    name          { Faker::Cannabis.buzzword }
+    description   { Faker::Food.description }
   end
 end
