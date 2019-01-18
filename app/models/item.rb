@@ -10,10 +10,12 @@
 #  discount_percentage :integer          default(0)
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
+#  name                :string
 #
 
 class Item < ApplicationRecord
   validates :name, presence: true
+  validates :original_price, presence: true
 
   has_many :categorizations, dependent: :destroy
   has_many :categories, through: :categorizations

@@ -5,15 +5,9 @@
 		<th><%= elem.name %></th>		
 		<th><%= elem.original_price %></th>
 
-		<% if current_admin %>
 			<th><%= f.number_field :discount_percentage, class: 'form-control' %></th>
 			<th><%= elem.price %></th>
 			<th><%= f.submit 'Modifier', class: 'btn btn-dark' %>
-		<%else current_user %>
-			<th><%= elem.discount_percentage %></th>
-			<th><%= elem.price %></th>
-			<th><%= f.submit 'Acheter', class: 'btn btn-dark' %>
-		<%end%>
 		</th>
 		<%end%>
 	</tr>

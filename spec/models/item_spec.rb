@@ -10,6 +10,7 @@
 #  discount_percentage :integer          default(0)
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
+#  name                :string
 #
 
 require 'rails_helper'
@@ -44,9 +45,20 @@ RSpec.describe Item, type: :model do
   end
 
   describe 'Item' do
+    it { is_expected.to have_many(:categories) }
+    it { is_expected.to have_many(:categorizations) }
+
     it 'is invalid if there is no name' do
       item = Item.new(original_price: 5, has_discount: false, discount_percentage: nil)
       expect(item.valid?).to eq false
+    end
+
+    context 'when the item has no original price' do
+      let(:item) { build(:item_without_original_price) }
+
+      it 'is invalid if there is no original price' do
+        expect(item.valid?).to eq(false)
+      end
     end
   end
 end

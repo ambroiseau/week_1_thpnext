@@ -11,3 +11,7 @@ end
 1.upto(5) do |_i|
   Category.create!(name: Faker::Cannabis.buzzword, description: Faker::Food.description)
 end
+
+# 1.upto(5) do |_i|
+#   Category.create!(username: Faker::BojackHorseman.name, email: Faker::Internet.)
+# end
